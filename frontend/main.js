@@ -5,18 +5,18 @@ import App from './App'
 
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof document.createElement === 'function') {
-    window.renderClient = (products, sortBy) => {
+    window.renderClient = (employees) => {
         render (
-            <App products={products} sortBy={sortBy}/>,
+            <App products={employees}/>,
             document.getElementById ('root')
         );
     }
 }
 else {
-    global.renderServer = (products, sortBy) => {
-        const jsProducts = Java.from (products);
+    global.renderServer = (employees) => {
+        const jsEmployees = Java.from(employees);
         return renderToString (
-            <App products={jsProducts} sortBy={sortBy}/>
+            <App employees={jsEmployees}/>
         )
     };
 }

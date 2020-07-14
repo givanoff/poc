@@ -11,12 +11,16 @@ class App extends React.Component {
 
     componentDidMount() {
         this.popstateListener = window.addEventListener('popstate', ev => {
-            const { pathname, search } = event.target.location;
+            const { pathname, search } = ev.target.location;
             this.setState({ employees: [] })
             fetch(`${pathname}${search}`)
                 .then(r => r.json())
                 .then(employees => this.setState({ employees }))
         })
+    }
+
+    componentWillUnmount () {
+        window.removeEventListener('popstate', this.popstateListener)
     }
 
     render() {

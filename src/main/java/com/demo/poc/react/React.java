@@ -10,17 +10,22 @@ import java.util.List;
 
 @Component
 public class React {
-    public String renderEmployees(List<Employee> employees) throws Exception{
+    public String renderEmployees(List<Employee> employees) throws Exception {
         NashornScriptEngine nse = getEngine();
 
-        Object html = nse.invokeFunction("renderServer", employees);
-        return String.valueOf(html);
+        try {
+            Object html = nse.invokeFunction("renderServer", employees);
+            return String.valueOf(html);
+        } catch (Exception e) {
+            throw new IllegalStateException("failed to renderProducts react component", e);
+        }
+
     }
 
-    private NashornScriptEngine getEngine() throws ScriptException{
+    private NashornScriptEngine getEngine() throws ScriptException {
         NashornScriptEngine nse = (NashornScriptEngine) new ScriptEngineManager().getEngineByName("nashorn");
         nse.eval("load ('src/main/resources/static/nashorn-polyfill.js')");
-        nse.eval ("load ('src/main/resources/static/app.bundle.js')");
+        nse.eval("load ('src/main/resources/static/app.bundle.js')");
 
         return nse;
     }
