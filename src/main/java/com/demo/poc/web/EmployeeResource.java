@@ -5,10 +5,8 @@ import com.demo.poc.react.React;
 import com.demo.poc.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,20 +27,20 @@ public class EmployeeResource {
     }
 
     @ResponseBody
-    @RequestMapping (path = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Employee> employees(Model model){
+    @RequestMapping(path = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Employee> employees(Model model) {
         return this.employeeService.findAll();
     }
 
     @RequestMapping(value = "/test", produces = MediaType.TEXT_HTML_VALUE)
     public String getAllEmployees(Model model) throws Exception {
-        log.debug("REST request to fetch all users!");
+        log.info("REST request to fetch all users!");
+
         final List<Employee> empls = employeeService.findAll();
         String renderedHtml = react.renderEmployees(empls);
-        log.info("empls: {}", empls);
         model.addAttribute("content", renderedHtml);
         model.addAttribute("employees", empls);
 
-        return "ResponseEntity.ok().body(empls);";
+        return "index";
     }
 }

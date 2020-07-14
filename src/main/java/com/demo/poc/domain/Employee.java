@@ -12,10 +12,10 @@ public class Employee {
     private static  Long employeeId;
 
     public Employee(Long id, String firstName, String lastName, Long employeeId) {
-        Employee.id = id;
-        Employee.firstName = firstName;
-        Employee.lastName = lastName;
-        Employee.employeeId = employeeId;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeId = employeeId;
     }
 
     public static Long getId() {

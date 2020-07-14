@@ -5,8 +5,8 @@ const EmployeeList = ({
 }) => (
         <div>
             <ul>
-                {employees.map(({ firstName, lastName, employeeId }) => (
-                    <li>
+                {employees.map(({ firstName, lastName, employeeId }, i) => (
+                    <li key={i}>
                         {firstName}{lastName}{employeeId}
                     </li>
                 ))}
