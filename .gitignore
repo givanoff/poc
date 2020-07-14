@@ -34,3 +34,4 @@ build/
 /node_modules
 /src/main/resources/static/app.bundle.js
 /src/main/resources/static/styles.css
+/frontend/node_modules
