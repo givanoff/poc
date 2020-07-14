@@ -14,9 +14,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined' && typeof d
 }
 else {
     global.renderServer = (employees) => {
-        const jsEmployees = Java.from(employees);
+        // const jsEmployees = Java.from(employees);
         return renderToString (
-            <App employees={jsEmployees}/>
+            <App employees={employees}/>
         )
     };
 }
